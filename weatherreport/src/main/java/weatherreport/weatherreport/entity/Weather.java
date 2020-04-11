@@ -11,13 +11,13 @@ import lombok.Setter;
 public class Weather {
 	  private String latitude;
 	  private String longitude;
-	  private LocalDateTime date;
+	  private String date;
 	  private String time;
 	  private String temperature;
-	  private LocalDate sunRiseTime;
-	  private LocalDate sunsetTime;
+	  private String sunRiseTime;
+	  private String sunsetTime;
 	  private String temperatureHigh;
-	  private LocalDate temperatureHighTime;
+	  private String temperatureHighTime;
 	  private String temperatureLow;
-	  private LocalDate temperatureLowTime;
+	  private String temperatureLowTime;
 }

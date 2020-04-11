@@ -25,6 +25,13 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import weatherreport.weatherreport.Service.WeatherService;
 import weatherreport.weatherreport.entity.Weather;
+/**
+* The Controller to hit the weather API and fetch the results in the form of JSON response
+*
+* @author  Videet Kumar
+* @version 1.0
+* @since   2020-04-11 
+*/
 
 @RestController
 public class WeatherController {
@@ -39,14 +46,14 @@ public class WeatherController {
 	
 	@RequestMapping(value = "/search/{latitude}/{longitude}", method = RequestMethod.GET)
 	public ArrayList<Weather> getWeatherData(@PathVariable String latitude, @PathVariable String longitude) throws IOException {
-		//Instant instant = Instant.now();
-		//long currentTime = instant.toEpochMilli();
+
+		String url = "https://api.darksky.net/forecast/0b67f8f549800f7bdeccc85500ba9324/";
 	    long currentTime = System.currentTimeMillis()/1000;
 	    String oneYearMilliS = "31556952000";
 	    long oneYear = Long.parseLong(oneYearMilliS)/1000;
 	    long oneYearBackTime = currentTime - oneYear;
-	    ResponseEntity<String> currentResponse = restTemplate.getForEntity("https://api.darksky.net/forecast/0b67f8f549800f7bdeccc85500ba9324/"+latitude+","+longitude+","+currentTime, String.class);
-	    ResponseEntity<String> OneYearBackResponse = restTemplate.getForEntity("https://api.darksky.net/forecast/0b67f8f549800f7bdeccc85500ba9324/"+latitude+","+longitude+","+oneYearBackTime, String.class);
+	    ResponseEntity<String> currentResponse = restTemplate.getForEntity(url+latitude+","+longitude+","+currentTime, String.class);
+	    ResponseEntity<String> OneYearBackResponse = restTemplate.getForEntity(url+latitude+","+longitude+","+oneYearBackTime, String.class);
 	    ArrayList<Weather> result = new ArrayList<>();
 	    WeatherService weatherService = new WeatherService();	    ;
 	    result.add(weatherService.parseResponse(currentResponse, latitude, longitude, currentTime));

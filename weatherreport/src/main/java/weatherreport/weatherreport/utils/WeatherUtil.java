@@ -6,16 +6,16 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 public class WeatherUtil {
-	public LocalDateTime convertEpochToDate(long longValue) {
-		//return Instant.ofEpochMilli(longValue).atZone(ZoneId.systemDefault()).toLocalDate();
-	    Instant instant = Instant.ofEpochMilli(longValue);
-	    LocalDateTime date = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
-	    return date;
+	public String convertEpochToDate(long longValue) {
+
+	    return new java.text.SimpleDateFormat("MM/dd/yyyy").format(new java.util.Date (longValue*1000));
 	}
-	public LocalDate convertStringEpochToDate(String longValue) {
-		long oneYear = Long.parseLong(longValue)/1000;
-		LocalDate date =
-			    Instant.ofEpochMilli(oneYear).atZone(ZoneId.systemDefault()).toLocalDate();
-		return date;
+	public String convertStringEpochToDate(String longValue) {
+		long longDate = Long.parseLong(longValue)/1000;
+		return new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date (longDate*1000));
+	}
+	public String convertEpochToTime(long longValue) {
+
+	    return new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date (longValue*1000));
 	}
 }

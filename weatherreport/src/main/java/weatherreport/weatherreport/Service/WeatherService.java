@@ -37,7 +37,7 @@ public class WeatherService {
 	    }
 	    
 	    weatherData.setDate(util.convertEpochToDate(time));
+	    weatherData.setTime(util.convertEpochToTime(time));
 	    return weatherData;
-	}
-	
+	}	
 }
